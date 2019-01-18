@@ -90,7 +90,8 @@ static __always_inline void wildkeccak(uint64_t *restrict st, const uint64_t *re
             idx[x] = reciprocal_remainder64(st[x], scr_size, recip) << 2;
             prefetch1(&pscr[idx[x]]);
         }
-
+#undef __AVX2__
+#undef __SSE2__	    
 #if defined(__AVX2__)
 #warning using AVX2 optimizations
         __m256i *st0 = (__m256i *)st;
